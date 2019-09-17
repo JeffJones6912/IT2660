@@ -35,7 +35,8 @@ public class Listing
         this.age = age;
     }
     
-    public String toString() {
+    public String toString() 
+    {
         return "Name: " + name  + "; Age: " + age +";";
     }
     
@@ -63,6 +64,5 @@ public class Listing
     public int getAge() 
     {
         return age;
-    }
-    
+    }   
 }
