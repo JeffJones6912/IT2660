@@ -1,0 +1,52 @@
+
+public class NodeObjects
+{
+	private int next;
+	private int size;
+	private StudentListings[] data;
+	
+	public NodeObjects()
+	{
+		next = 0;
+		size = 100;
+		data = new StudentListings[size];
+	}
+	public NodeObjects(int s)
+	{
+		next = 0;
+		data = new StudentListings[size];
+		size = s;
+	}
+	public boolean insert(StudentListings newStudent)
+	{
+		if(next >= size)
+			return false;
+		data[next] = newStudent.deepCopy();
+		
+		if(data[next] == null)
+			return false;
+		next = next + 1;
+		return true;
+	}
+	public StudentListings fetch(String targetKey)
+	{
+		StudentListings student;
+		StudentListings temp;
+		
+		int i = 0;
+		while(i < next && data[i].compareTo(targetKey) == 0)
+		{
+			i++;
+		}
+		if(i == next)
+			return null;
+		student = data[i].deepCopy();
+		if(i != 0)
+		{
+			temp = data[i - 1];
+			data[i - 1] = data[i];
+			data[i] = temp;
+		}
+		return student;
+	}
+}
