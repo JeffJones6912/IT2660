@@ -1,0 +1,39 @@
+/*Jeff Jones
+IT2660
+Assignment 2 
+Exercise 19 */
+import javax.swing.JOptionPane;
+
+public class StudentListings
+{
+	private String name;
+	private String idNum;
+	private String gpa;
+	public StudentListings(String n, String i, String g)
+	{
+		name = n;
+		idNum = i;
+		gpa = g;
+	}
+	public String toString()
+	{
+		return("Name is " + name +
+				" \nIdentification Number is " + idNum +
+				" \nGrade point average is " + gpa + "\n");
+	}
+	public StudentListings deepCopy()
+	{
+		StudentListings clone = new StudentListings(name, idNum, gpa);
+		return clone;
+	}
+	public int compareTo(String targetKey)
+	{
+		return(name.compareTo(targetKey));
+	}
+	public void input()
+	{
+		name = JOptionPane.showInputDialog("Enter student's name");
+		idNum = JOptionPane.showInputDialog("Enter Identifcation Number");
+		gpa = JOptionPane.showInputDialog("Enter student's grade point average");
+	}
+}
