@@ -1,4 +1,3 @@
-
 public class Stack
 {
 	private Listing[] data;
@@ -10,16 +9,21 @@ public class Stack
 		size = 100;
 		data = new Listing[100];
 	}
-	public Stack(int n)
+	public Stack(int j)
 	{
 		top = -1;
-		size = n;
-		data = new Listing[n];
+		size = j;
+		data = new Listing[j];
 	}
 	public boolean push(Listing newNode)
 	{
+		Listing[] temp = new Listing[size + 1];
 		if(top == size - 1)
-			return false; // **overflow error**
+		{
+			for(int i = 0; i < size - 1; i++)
+				data[i] = temp[i];
+			return true; // **overflow error**
+		}
 		else
 		{
 			top = top + 1;
@@ -57,5 +61,10 @@ public class Stack
 			return true;
 		else
 			return false;
+	}
+	public void emptyStack()
+	{
+		if(top == -1)
+			System.out.println("Stack is empty already.");
 	}
 }
