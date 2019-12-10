@@ -66,40 +66,53 @@ public class BinaryTree {
         if (found == false) {
             return false;
         }
-        else {
-            if (c.get().lc == null && c.get().rc == null) {
-                if (p.get().lc == c.get()) {
+        else
+            {
+            if (c.get().lc == null && c.get().rc == null)
+            {
+                if (p.get().lc == c.get())
+                {
                     p.get().lc = null;
                 }
-                else {
+                else
+                {
                     p.get().rc = null;
                 }
             }
-            else if (c.get().lc == null || c.get().rc == null) {
-                if (c.get().lc == c.get()) {
+            else if (c.get().lc == null || c.get().rc == null)
+            {
+                if (c.get().lc == c.get())
+                {
                     p.get().lc = c.get().lc;
                 }
-                else {
+                else
+                {
                     p.get().lc = c.get().rc;
                 }
             }
-            else {
+            else
+            {
                 nextLargest = c.get().lc;
                 largest = nextLargest.rc;
-                if (largest != null) {
-                    while (largest.rc != null) {
+                if (largest != null)
+                {
+                    while (largest.rc != null)
+                    {
                         nextLargest = largest;
                         largest = largest.rc;
                     }
                     c.get().node = largest.node;
                     nextLargest.rc = largest.lc;
                 }
-                else {
+                else
+                {
                     nextLargest.rc = c.get().rc;
-                    if (p.get().lc == c.get()) {
+                    if (p.get().lc == c.get())
+                    {
                         p.get().lc = nextLargest;
                     }
-                    else {
+                    else
+                    {
                         p.get().rc = nextLargest;
                     }
                 }
@@ -108,8 +121,10 @@ public class BinaryTree {
         }
     }
 
-    public boolean update(String targetKey, Listing newListing) {
-        if (delete(targetKey) == false) {
+    public boolean update(String targetKey, Listing newListing)
+    {
+        if (delete(targetKey) == false)
+        {
             return false;
         }
         else if (insert(newListing) == false)
@@ -119,31 +134,37 @@ public class BinaryTree {
         return true;
     }
 
-    //TreeNode
-    public class TreeNode {
+    public class TreeNode
+    {
         private Listing node;
         private TreeNode lc;
         private TreeNode rc;
         public TreeNode() {}
     }
 
-    //FindNode
-    private boolean findNode(String targetKey, TreeNodeWrapper parent, TreeNodeWrapper child) {
+    private boolean findNode(String targetKey, TreeNodeWrapper parent, TreeNodeWrapper child)
+    {
         parent.set(root);
         child.set(root);
-        if (root == null) {
+        if (root == null)
+        {
             return true;
         }
-        while (child.get() != null) {
-            if (child.get().node.compareTo(targetKey) == 0) {
+        while (child.get() != null)
+        {
+            if (child.get().node.compareTo(targetKey) == 0)
+            {
                 return true;
             }
-            else {
+            else
+            {
                 parent.set(child.get());
-                if (targetKey.compareTo(child.get().node.getKey()) < 0) {
+                if (targetKey.compareTo(child.get().node.getKey()) < 0)
+                {
                     child.set(child.get().lc);
                 }
-                else {
+                else
+                {
                     child.set(child.get().rc);
                 }
             }
@@ -151,35 +172,42 @@ public class BinaryTree {
         return false;
     }
 
-    //TreeNodeWrapper
-    public class TreeNodeWrapper {
+    public class TreeNodeWrapper
+    {
         TreeNode treeRef = null;
         public TreeNodeWrapper() {}
-        public TreeNode get() {
+        public TreeNode get()
+        {
             return treeRef;
         }
-        public void set(TreeNode t) {
+        public void set(TreeNode t)
+        {
             treeRef = t;
         }
     }
 
     //LNR Traversal
-    public void LNRoutputTraversal(TreeNode root) {
-        if (root.lc != null) {
+    public void LNRoutputTraversal(TreeNode root)
+    {
+        if (root.lc != null)
+        {
             LNRoutputTraversal(root.lc);
         }
         System.out.println(root.node);
-        if(root.rc != null) {
+        if(root.rc != null)
+        {
             LNRoutputTraversal(root.rc);
         }
     }
 
-    //ShowAll
-    public void showAll() {
-        if (root == null) {
-            System.out.println("Data Structure is empty");
+    public void showAll()
+    {
+        if (root == null)
+        {
+            System.out.println("Data structure is empty");
         }
-        else {
+        else
+        {
             LNRoutputTraversal(root);
         }
     }
